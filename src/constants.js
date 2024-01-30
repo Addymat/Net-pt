@@ -9,5 +9,5 @@ headers: {
 
 export const IMG_CDN="https://image.tmdb.org/t/p/w500/";
 
-export const OPEN_AI = "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";
+export const OPEN_AI = process.env.REACT_APP_OPEN_AI;
 

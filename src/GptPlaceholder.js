@@ -86,7 +86,7 @@ const GptPlaceholder = () => {
     (
       <div class="gpt_submission">
         <form class='gptform' onSubmit={justSearch}>
-            <input ref={searchtext} type='text' class="searchbar" placeholder='What do you wanna watch?' />
+            <input ref={searchtext} type='text' class="searchbar" placeholder='What do you wanna watch ?' />
             
             <button type='submit' class="submit_but">Search</button>
             
