@@ -9,7 +9,7 @@
     "chat-completions": "^5.1.0",
     "firebase": "^10.7.1",
     "gpt-turbo": "^5.0.1",
-    "openai": "^4.24.7",
+    "openai": "^4.58.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.0.4",
@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@reduxjs/toolkit": "^2.0.1",
+    "buffer": "^6.0.3",
     "process": "^0.11.10"
   }
 }

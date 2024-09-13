@@ -2,11 +2,10 @@ import React from 'react';
 import {useState, useRef} from 'react';
 import Header from "./Header";
 import { checkvalidate } from "./Validate";
-import { getAuth, createUserWithEmailAndPassword,updateProfile } from "firebase/auth";// TODO: Add SDKs for Firebase products that you want to use
+import { getAuth, createUserWithEmailAndPassword,updateProfile, signInWithEmailAndPassword } from "firebase/auth";// TODO: Add SDKs for Firebase products that you want to use
 import { initializeApp } from 'firebase/app';
 import { app } from "./Firebase.js"
 import { getAnalytics } from "firebase/analytics";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from "./Firebase.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
@@ -22,6 +21,7 @@ const Login = () => {
     const name=useRef(null);
     const email=useRef(null);
     const password=useRef(null);
+    
     const navigate=useNavigate();
     const dispatch=useDispatch();
 
@@ -50,8 +50,7 @@ const Login = () => {
 
     const Checkit = () =>
     {
-        console.log(email.current.value);
-        console.log(password.current.value);
+        
         const message=checkvalidate(email.current.value,password.current.value);
         setErrorMessage(message);
 
@@ -124,7 +123,7 @@ const Login = () => {
         </div>
         <p class="errmess">{errorMessage}</p>
         <button class="sign" onClick={Checkit}>{isSignInForm ? "Sign In" : "Sign Up"}</button>
-                <p class="newsign">{isSignInForm ? "New to Netflix?" : "Already have an account?"}</p> <p class="newsignlink" onClick={toggleSignInForm}>{isSignInForm ? "Sign Up Now" : "Sign in   "}</p>
+                <p class="newsign">{isSignInForm ? "New to Netflix?" : "Already have an account?"}</p> <p class="newsignlink" onClick={toggleSignInForm}>{isSignInForm ? "Sign Up Now" : "Sign in"}</p>
     </form>
     </> 
   )

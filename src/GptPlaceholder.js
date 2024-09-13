@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import openai from './Gptapi';
 import { Conversation } from "gpt-turbo";
-import {createChatCompletionsMachine} from 'chat-completions';
+// import { createChatCompletionsMachine } from 'chat-completions';
 import GptResults from './GptResults';
 import gptSearch from './gptSearch';
 import { API, OPEN_AI } from './constants';
@@ -48,9 +48,9 @@ const GptPlaceholder = () => {
 
     try {
       const gptResults = await openai.chat.completions.create({
-        messages: [{ role: "user", content: gptQuery }],
-        model: "gpt-3.5-turbo",
-      });
+      messages: [{ role: "user", content: gptQuery }],
+      model: "gpt-3.5-turbo",
+    });
       console.log(gptResults.choices?.[0].message?.content);
     const gptgmovies = gptResults.choices?.[0].message?.content.split(",");
 
@@ -63,6 +63,7 @@ const GptPlaceholder = () => {
       
       
     } catch (error) {
+      console.error(OPEN_AI);
       console.error('Error fetching GPT results:', error);
       // Handle the error as needed (e.g., show an error message)
     }

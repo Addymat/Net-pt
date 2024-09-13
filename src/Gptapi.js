@@ -8,4 +8,4 @@ const openai = new OpenAI({
     // This is the default and can be omitted
   });
 
-export default openai
+export default openai;
