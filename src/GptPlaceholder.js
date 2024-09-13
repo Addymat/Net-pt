@@ -63,7 +63,6 @@ const GptPlaceholder = () => {
       
       
     } catch (error) {
-      console.error(OPEN_AI);
       console.error('Error fetching GPT results:', error);
       // Handle the error as needed (e.g., show an error message)
     }
