@@ -584,8 +584,8 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"5OoK8":[function(require,module,exports) {
-var Refresh = require("689e858a083154b2");
-var ErrorOverlay = require("c746e6e83c6b2c51");
+var Refresh = require("57b1604bc0d65dc6");
+var ErrorOverlay = require("3a5a36aa0d4facfa");
 Refresh.injectIntoGlobalHook(window);
 window.$RefreshReg$ = function() {};
 window.$RefreshSig$ = function() {
@@ -604,11 +604,11 @@ window.addEventListener("parcelhmraccept", ()=>{
     ErrorOverlay.dismissRuntimeErrors();
 });
 
-},{"689e858a083154b2":"jMCb2","c746e6e83c6b2c51":"K1aHo"}],"jMCb2":[function(require,module,exports) {
+},{"57b1604bc0d65dc6":"jMCb2","3a5a36aa0d4facfa":"K1aHo"}],"jMCb2":[function(require,module,exports) {
 "use strict";
-module.exports = require("f9c4c5878aef7b6a");
+module.exports = require("3190b25bb2e17645");
 
-},{"f9c4c5878aef7b6a":"fJlCk"}],"fJlCk":[function(require,module,exports) {
+},{"3190b25bb2e17645":"fJlCk"}],"fJlCk":[function(require,module,exports) {
 /** @license React v0.9.0
  * react-refresh-runtime.development.js
  *
@@ -1069,7 +1069,7 @@ module.exports = require("f9c4c5878aef7b6a");
 })();
 
 },{}],"K1aHo":[function(require,module,exports) {
-var process = require("1a399c53a598042c");
+var process = require("d4b9b2943222bd11");
 !function(e, t) {
     module.exports = t();
 }(window, function() {
@@ -2799,7 +2799,7 @@ var process = require("1a399c53a598042c");
     ]);
 });
 
-},{"1a399c53a598042c":"d5jf4"}],"d5jf4":[function(require,module,exports) {
+},{"d4b9b2943222bd11":"d5jf4"}],"d5jf4":[function(require,module,exports) {
 // shim for using process in browser
 var process = module.exports = {};
 // cached from whatever global is present so that test runners that stub it
@@ -3789,6 +3789,7 @@ module.exports = require("ee51401569654d91");
             setCurrentlyValidatingElement$1(null);
         }
     }
+    var didWarnAboutKeySpread = {};
     function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
         var validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to
         // succeed and there will likely be errors in render.
@@ -3826,6 +3827,18 @@ module.exports = require("ee51401569654d91");
                 } else validateChildKeys(children, type);
             }
         }
+        if (hasOwnProperty.call(props, "key")) {
+            var componentName = getComponentNameFromType(type);
+            var keys = Object.keys(props).filter(function(k) {
+                return k !== "key";
+            });
+            var beforeExample = keys.length > 0 ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
+            if (!didWarnAboutKeySpread[componentName + beforeExample]) {
+                var afterExample = keys.length > 0 ? "{" + keys.join(": ..., ") + ": ...}" : "{}";
+                error('A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />', beforeExample, componentName, afterExample, componentName);
+                didWarnAboutKeySpread[componentName + beforeExample] = true;
+            }
+        }
         if (type === REACT_FRAGMENT_TYPE) validateFragmentProps(element);
         else validatePropTypes(element);
         return element;
@@ -3852,7 +3865,7 @@ module.exports = require("a569817e6ea559f6");
 (function() {
     "use strict";
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-    var ReactVersion = "18.2.0";
+    var ReactVersion = "18.3.1";
     // ATTENTION
     // When adding new symbols to this file,
     // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
@@ -5675,6 +5688,7 @@ module.exports = require("a569817e6ea559f6");
     exports.StrictMode = REACT_STRICT_MODE_TYPE;
     exports.Suspense = REACT_SUSPENSE_TYPE;
     exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
+    exports.act = act;
     exports.cloneElement = cloneElement$1;
     exports.createContext = createContext;
     exports.createElement = createElement$1;
@@ -52018,7 +52032,7 @@ var withExtraArgument = createThunkMiddleware;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"abPlr"}],"hTb5H":[function(require,module,exports) {
 "use strict";
-var Refresh = require("e3dbe447a1efc438");
+var Refresh = require("b50ebfd0121d760d");
 function debounce(func, delay) {
     {
         let timeout = undefined;
@@ -52154,7 +52168,7 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"e3dbe447a1efc438":"jMCb2"}],"g9rjN":[function(require,module,exports) {
+},{"b50ebfd0121d760d":"jMCb2"}],"g9rjN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$87c2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -55949,7 +55963,6 @@ const GptPlaceholder = ()=>{
                 movieResults: tmdbmovie
             }));
         } catch (error) {
-            console.error((0, _constants.OPEN_AI));
             console.error("Error fetching GPT results:", error);
         // Handle the error as needed (e.g., show an error message)
         }
@@ -55968,7 +55981,7 @@ const GptPlaceholder = ()=>{
                         placeholder: "What do you wanna watch ?"
                     }, void 0, false, {
                         fileName: "src/GptPlaceholder.js",
-                        lineNumber: 90,
+                        lineNumber: 89,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -55977,23 +55990,23 @@ const GptPlaceholder = ()=>{
                         children: "Search"
                     }, void 0, false, {
                         fileName: "src/GptPlaceholder.js",
-                        lineNumber: 92,
+                        lineNumber: 91,
                         columnNumber: 13
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/GptPlaceholder.js",
-                lineNumber: 89,
+                lineNumber: 88,
                 columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/GptPlaceholder.js",
-            lineNumber: 88,
+            lineNumber: 87,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/GptPlaceholder.js",
-        lineNumber: 84,
+        lineNumber: 83,
         columnNumber: 5
     }, undefined);
 };
